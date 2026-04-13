@@ -1,0 +1,308 @@
+[2026-04-02 13:50:30,074] INFO     preprocessing.pipeline_ffc23 – ======================================================================
+[2026-04-02 13:50:30,074] INFO     preprocessing.pipeline_ffc23 –   FF-C23 PREPROCESSING PIPELINE
+[2026-04-02 13:50:30,074] INFO     preprocessing.pipeline_ffc23 – ======================================================================
+[2026-04-02 13:50:30,074] INFO     preprocessing.pipeline_ffc23 – Raw data dir  : D:\Deeplearning\face-attendance-system\data\anti-spoof\raw\ff-c23\FaceForensics++_C23
+[2026-04-02 13:50:30,074] INFO     preprocessing.pipeline_ffc23 – Output dir    : D:\Deeplearning\face-attendance-system\dataset
+[2026-04-02 13:50:30,075] INFO     preprocessing.pipeline_ffc23 – Dataset name  : ff-c23
+[2026-04-02 13:50:30,075] INFO     preprocessing.pipeline_ffc23 – Image size    : 224×224
+[2026-04-02 13:50:30,075] INFO     preprocessing.pipeline_ffc23 – Frame rate    : mỗi 10 frame lấy 1
+[2026-04-02 13:50:30,075] INFO     preprocessing.pipeline_ffc23 – Max frames    : 30 frame/video
+[2026-04-02 13:50:30,075] INFO     preprocessing.pipeline_ffc23 – Split ratios  : 70% / 15% / 15%
+[2026-04-02 13:50:30,075] INFO     preprocessing.pipeline_ffc23 – 
+[2026-04-02 13:50:30,075] INFO     preprocessing.pipeline_ffc23 – ▶  BƯỚC 1 / 4 – Chia Dữ Liệu (Video-Level Split)
+[2026-04-02 13:50:30,075] INFO     preprocessing.splitting_ffc23 – ============================================================
+[2026-04-02 13:50:30,075] INFO     preprocessing.splitting_ffc23 – CHIA DỮ LIỆU THEO VIDEO (VIDEO-LEVEL SPLIT)
+[2026-04-02 13:50:30,075] INFO     preprocessing.splitting_ffc23 – ============================================================
+[2026-04-02 13:50:30,075] INFO     preprocessing.splitting_ffc23 – Raw dir: D:\Deeplearning\face-attendance-system\data\anti-spoof\raw\ff-c23\FaceForensics++_C23
+[2026-04-02 13:50:30,076] INFO     preprocessing.splitting_ffc23 – Tỉ lệ : 70% train / 15% val / 15% test
+[2026-04-02 13:50:30,076] INFO     preprocessing.splitting_ffc23 – 
+[2026-04-02 13:50:30,076] INFO     preprocessing.splitting_ffc23 – Thu thập video IDs:
+[2026-04-02 13:50:30,107] INFO     preprocessing.splitting_ffc23 –   original           : 1000 videos
+[2026-04-02 13:50:30,141] INFO     preprocessing.splitting_ffc23 –   Deepfakes          : 1000 videos
+[2026-04-02 13:50:30,172] INFO     preprocessing.splitting_ffc23 –   FaceSwap           : 1000 videos
+[2026-04-02 13:50:30,202] INFO     preprocessing.splitting_ffc23 –   Face2Face          : 1000 videos
+[2026-04-02 13:50:30,231] INFO     preprocessing.splitting_ffc23 –   NeuralTextures     : 1000 videos
+[2026-04-02 13:50:30,259] INFO     preprocessing.splitting_ffc23 –   FaceShifter        : 1000 videos
+[2026-04-02 13:50:30,259] INFO     preprocessing.splitting_ffc23 – 
+[2026-04-02 13:50:30,260] INFO     preprocessing.splitting_ffc23 – Chia video IDs:
+[2026-04-02 13:50:30,261] INFO     preprocessing.splitting_ffc23 –   [original] train : 700 videos
+[2026-04-02 13:50:30,261] INFO     preprocessing.splitting_ffc23 –   [original] val   : 150 videos
+[2026-04-02 13:50:30,261] INFO     preprocessing.splitting_ffc23 –   [original] test  : 150 videos
+[2026-04-02 13:50:30,262] INFO     preprocessing.splitting_ffc23 –   [Deepfakes] train : 700 videos
+[2026-04-02 13:50:30,262] INFO     preprocessing.splitting_ffc23 –   [Deepfakes] val   : 150 videos
+[2026-04-02 13:50:30,262] INFO     preprocessing.splitting_ffc23 –   [Deepfakes] test  : 150 videos
+[2026-04-02 13:50:30,262] INFO     preprocessing.splitting_ffc23 –   [FaceSwap] train : 700 videos
+[2026-04-02 13:50:30,263] INFO     preprocessing.splitting_ffc23 –   [FaceSwap] val   : 150 videos
+[2026-04-02 13:50:30,263] INFO     preprocessing.splitting_ffc23 –   [FaceSwap] test  : 150 videos
+[2026-04-02 13:50:30,265] INFO     preprocessing.splitting_ffc23 –   [Face2Face] train : 700 videos
+[2026-04-02 13:50:30,265] INFO     preprocessing.splitting_ffc23 –   [Face2Face] val   : 150 videos
+[2026-04-02 13:50:30,265] INFO     preprocessing.splitting_ffc23 –   [Face2Face] test  : 150 videos
+[2026-04-02 13:50:30,266] INFO     preprocessing.splitting_ffc23 –   [NeuralTextures] train : 700 videos
+[2026-04-02 13:50:30,267] INFO     preprocessing.splitting_ffc23 –   [NeuralTextures] val   : 150 videos
+[2026-04-02 13:50:30,267] INFO     preprocessing.splitting_ffc23 –   [NeuralTextures] test  : 150 videos
+[2026-04-02 13:50:30,267] INFO     preprocessing.splitting_ffc23 –   [FaceShifter] train : 700 videos
+[2026-04-02 13:50:30,268] INFO     preprocessing.splitting_ffc23 –   [FaceShifter] val   : 150 videos
+[2026-04-02 13:50:30,268] INFO     preprocessing.splitting_ffc23 –   [FaceShifter] test  : 150 videos
+[2026-04-02 13:50:30,268] INFO     preprocessing.splitting_ffc23 – 
+[2026-04-02 13:50:30,268] INFO     preprocessing.splitting_ffc23 – ──────────────────────────────────────────────────
+[2026-04-02 13:50:30,268] INFO     preprocessing.splitting_ffc23 – TỔNG KẾT CHIA DỮ LIỆU:
+[2026-04-02 13:50:30,268] INFO     preprocessing.splitting_ffc23 –   train : 4200 videos tổng cộng
+[2026-04-02 13:50:30,269] INFO     preprocessing.splitting_ffc23 –   val   : 900 videos tổng cộng
+[2026-04-02 13:50:30,269] INFO     preprocessing.splitting_ffc23 –   test  : 900 videos tổng cộng
+[2026-04-02 13:50:30,269] INFO     preprocessing.splitting_ffc23 – ──────────────────────────────────────────────────
+[2026-04-02 13:50:30,269] INFO     preprocessing.pipeline_ffc23 – 
+[2026-04-02 13:50:30,269] INFO     preprocessing.pipeline_ffc23 – ▶  BƯỚC 2 / 4 – Trích Xuất Frame + Cắt Mặt
+[2026-04-02 13:50:30,269] INFO     preprocessing.frame_extraction – ============================================================
+[2026-04-02 13:50:30,269] INFO     preprocessing.frame_extraction – TRÍCH XUẤT FRAME + CẮT MẶT
+[2026-04-02 13:50:30,269] INFO     preprocessing.frame_extraction – ============================================================
+[2026-04-02 13:50:30,270] INFO     preprocessing.frame_extraction – Sample rate  : mỗi 10 frame lấy 1
+[2026-04-02 13:50:30,271] INFO     preprocessing.frame_extraction – Max frames   : 30 frame/video
+[2026-04-02 13:50:30,271] INFO     preprocessing.frame_extraction – Image size   : 224×224
+[2026-04-02 13:50:30,272] INFO     preprocessing.frame_extraction – 
+[2026-04-02 13:50:30,272] INFO     preprocessing.frame_extraction – ▶ [train] Trích xuất LIVE (700 videos)...
+[2026-04-02 13:50:30,779] INFO     preprocessing.frame_extraction – MTCNN detector đã sẵn sàng.
+[2026-04-02 13:54:07,174] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 50/700 videos (1500 frames)
+[2026-04-02 13:58:23,510] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 100/700 videos (3000 frames)
+[2026-04-02 14:01:24,232] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 150/700 videos (4500 frames)
+[2026-04-02 14:04:49,752] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 200/700 videos (6000 frames)
+[2026-04-02 14:08:05,622] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 250/700 videos (7500 frames)
+[2026-04-02 14:12:44,801] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 300/700 videos (9000 frames)
+[2026-04-02 14:20:43,684] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 350/700 videos (10500 frames)
+[2026-04-02 14:23:56,215] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 400/700 videos (12000 frames)
+[2026-04-02 14:27:06,954] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 450/700 videos (13500 frames)
+[2026-04-02 14:30:41,143] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 500/700 videos (15000 frames)
+[2026-04-02 14:33:31,212] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 550/700 videos (16500 frames)
+[2026-04-02 14:36:34,800] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 600/700 videos (18000 frames)
+[2026-04-02 14:39:48,684] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 650/700 videos (19500 frames)
+[2026-04-02 15:19:49,927] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 700/700 videos (21000 frames)
+[2026-04-02 15:19:49,927] INFO     preprocessing.frame_extraction –   → 21000 frames đã lưu
+[2026-04-02 15:19:49,927] INFO     preprocessing.frame_extraction – 
+[2026-04-02 15:19:49,929] INFO     preprocessing.frame_extraction – ▶ [train] Trích xuất Deepfakes (700 videos)...
+[2026-04-02 15:29:40,923] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 50/700 videos (1500 frames)
+[2026-04-02 15:40:14,630] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 100/700 videos (3000 frames)
+[2026-04-02 15:48:17,356] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 150/700 videos (4500 frames)
+[2026-04-02 15:56:50,264] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 200/700 videos (5999 frames)
+[2026-04-02 16:03:35,367] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 250/700 videos (7499 frames)
+[2026-04-02 16:11:05,357] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 300/700 videos (8999 frames)
+[2026-04-02 16:18:44,444] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 350/700 videos (10499 frames)
+[2026-04-02 16:25:28,731] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 400/700 videos (11999 frames)
+[2026-04-02 16:32:20,157] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 450/700 videos (13499 frames)
+[2026-04-02 16:41:05,825] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 500/700 videos (14999 frames)
+[2026-04-02 16:48:23,618] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 550/700 videos (16499 frames)
+[2026-04-02 16:55:54,141] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 600/700 videos (17999 frames)
+[2026-04-02 17:05:32,344] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 650/700 videos (19499 frames)
+[2026-04-02 17:12:06,833] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 700/700 videos (20999 frames)
+[2026-04-02 17:12:06,835] INFO     preprocessing.frame_extraction –   → 20999 frames đã lưu
+[2026-04-02 17:12:06,839] INFO     preprocessing.frame_extraction – 
+[2026-04-02 17:12:06,839] INFO     preprocessing.frame_extraction – ▶ [train] Trích xuất FaceSwap (700 videos)...
+[2026-04-02 17:21:16,841] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 50/700 videos (1500 frames)
+[2026-04-02 17:32:11,388] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 100/700 videos (3000 frames)
+[2026-04-02 17:43:35,050] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 150/700 videos (4500 frames)
+[2026-04-02 18:05:05,331] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 200/700 videos (6000 frames)
+[2026-04-02 18:47:08,626] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 250/700 videos (7500 frames)
+[2026-04-02 18:49:47,794] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 300/700 videos (9000 frames)
+[2026-04-02 18:52:33,258] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 350/700 videos (10500 frames)
+[2026-04-02 18:56:03,765] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 400/700 videos (12000 frames)
+[2026-04-02 18:58:49,788] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 450/700 videos (13500 frames)
+[2026-04-02 19:02:28,857] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 500/700 videos (15000 frames)
+[2026-04-02 19:06:00,484] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 550/700 videos (16500 frames)
+[2026-04-02 19:09:48,588] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 600/700 videos (17999 frames)
+[2026-04-02 19:13:27,845] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 650/700 videos (19499 frames)
+[2026-04-02 19:17:06,716] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 700/700 videos (20999 frames)
+[2026-04-02 19:17:06,717] INFO     preprocessing.frame_extraction –   → 20999 frames đã lưu
+[2026-04-02 19:17:06,763] INFO     preprocessing.frame_extraction – 
+[2026-04-02 19:17:06,764] INFO     preprocessing.frame_extraction – ▶ [train] Trích xuất Face2Face (700 videos)...
+[2026-04-02 19:20:41,528] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 50/700 videos (1500 frames)
+[2026-04-02 19:24:55,375] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 100/700 videos (3000 frames)
+[2026-04-02 19:28:10,638] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 150/700 videos (4500 frames)
+[2026-04-02 19:30:59,779] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 200/700 videos (6000 frames)
+[2026-04-02 19:35:16,429] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 250/700 videos (7500 frames)
+[2026-04-02 19:39:41,145] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 300/700 videos (9000 frames)
+[2026-04-02 19:43:13,946] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 350/700 videos (10500 frames)
+[2026-04-02 19:46:11,981] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 400/700 videos (12000 frames)
+[2026-04-02 19:49:02,509] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 450/700 videos (13500 frames)
+[2026-04-02 19:52:36,876] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 500/700 videos (15000 frames)
+[2026-04-02 19:56:45,861] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 550/700 videos (16500 frames)
+[2026-04-02 20:00:31,392] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 600/700 videos (17999 frames)
+[2026-04-02 20:03:13,792] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 650/700 videos (19499 frames)
+[2026-04-02 20:06:41,797] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 700/700 videos (20999 frames)
+[2026-04-02 20:06:41,798] INFO     preprocessing.frame_extraction –   → 20999 frames đã lưu
+[2026-04-02 20:06:41,798] INFO     preprocessing.frame_extraction – 
+[2026-04-02 20:06:41,798] INFO     preprocessing.frame_extraction – ▶ [train] Trích xuất NeuralTextures (700 videos)...
+[2026-04-02 20:09:27,120] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 50/700 videos (1500 frames)
+[2026-04-02 20:12:12,850] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 100/700 videos (3000 frames)
+[2026-04-02 20:14:51,398] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 150/700 videos (4500 frames)
+[2026-04-02 20:18:20,325] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 200/700 videos (6000 frames)
+[2026-04-02 20:22:57,253] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 250/700 videos (7500 frames)
+[2026-04-02 21:08:54,538] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 300/700 videos (9000 frames)
+[2026-04-02 21:12:18,189] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 350/700 videos (10500 frames)
+[2026-04-02 21:16:21,368] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 400/700 videos (12000 frames)
+[2026-04-02 21:23:07,323] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 450/700 videos (13500 frames)
+[2026-04-02 21:30:46,667] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 500/700 videos (15000 frames)
+[2026-04-02 21:37:06,757] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 550/700 videos (16500 frames)
+[2026-04-02 21:43:12,990] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 600/700 videos (17999 frames)
+[2026-04-02 21:48:41,905] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 650/700 videos (19499 frames)
+[2026-04-02 21:55:08,522] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 700/700 videos (20999 frames)
+[2026-04-02 21:55:08,522] INFO     preprocessing.frame_extraction –   → 20999 frames đã lưu
+[2026-04-02 21:55:08,523] INFO     preprocessing.frame_extraction – 
+[2026-04-02 21:55:08,523] INFO     preprocessing.frame_extraction – ▶ [train] Trích xuất FaceShifter (700 videos)...
+[2026-04-02 22:01:42,415] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 50/700 videos (1500 frames)
+[2026-04-02 22:07:57,576] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 100/700 videos (3000 frames)
+[2026-04-02 22:14:13,606] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 150/700 videos (4500 frames)
+[2026-04-02 22:19:44,576] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 200/700 videos (6000 frames)
+[2026-04-02 22:25:38,860] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 250/700 videos (7500 frames)
+[2026-04-02 22:32:07,635] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 300/700 videos (9000 frames)
+[2026-04-02 22:39:27,194] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 350/700 videos (10500 frames)
+[2026-04-02 22:46:57,374] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 400/700 videos (12000 frames)
+[2026-04-02 22:53:59,765] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 450/700 videos (13500 frames)
+[2026-04-02 23:02:49,280] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 500/700 videos (15000 frames)
+[2026-04-02 23:09:55,405] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 550/700 videos (16500 frames)
+[2026-04-02 23:17:44,459] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 600/700 videos (18000 frames)
+[2026-04-02 23:24:59,892] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 650/700 videos (19500 frames)
+[2026-04-02 23:31:18,860] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 700/700 videos (21000 frames)
+[2026-04-02 23:31:18,861] INFO     preprocessing.frame_extraction –   → 21000 frames đã lưu
+[2026-04-02 23:31:18,868] INFO     preprocessing.frame_extraction – 
+[2026-04-02 23:31:18,870] INFO     preprocessing.frame_extraction – ▶ [val] Trích xuất LIVE (150 videos)...
+[2026-04-02 23:33:54,276] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 50/150 videos (1500 frames)
+[2026-04-02 23:36:24,202] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 100/150 videos (3000 frames)
+[2026-04-02 23:38:58,332] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 150/150 videos (4500 frames)
+[2026-04-02 23:38:58,332] INFO     preprocessing.frame_extraction –   → 4500 frames đã lưu
+[2026-04-02 23:38:58,332] INFO     preprocessing.frame_extraction – 
+[2026-04-02 23:38:58,332] INFO     preprocessing.frame_extraction – ▶ [val] Trích xuất Deepfakes (150 videos)...
+[2026-04-02 23:41:25,697] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 50/150 videos (1500 frames)
+[2026-04-02 23:43:54,789] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 100/150 videos (3000 frames)
+[2026-04-02 23:46:29,401] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 150/150 videos (4497 frames)
+[2026-04-02 23:46:29,401] INFO     preprocessing.frame_extraction –   → 4497 frames đã lưu
+[2026-04-02 23:46:29,401] INFO     preprocessing.frame_extraction – 
+[2026-04-02 23:46:29,401] INFO     preprocessing.frame_extraction – ▶ [val] Trích xuất FaceSwap (150 videos)...
+[2026-04-02 23:58:53,911] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 50/150 videos (1500 frames)
+[2026-04-03 00:01:23,068] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 100/150 videos (3000 frames)
+[2026-04-03 00:03:56,920] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 150/150 videos (4500 frames)
+[2026-04-03 00:03:56,921] INFO     preprocessing.frame_extraction –   → 4500 frames đã lưu
+[2026-04-03 00:03:56,921] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:03:56,921] INFO     preprocessing.frame_extraction – ▶ [val] Trích xuất Face2Face (150 videos)...
+[2026-04-03 00:06:22,091] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 50/150 videos (1500 frames)
+[2026-04-03 00:08:51,672] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 100/150 videos (3000 frames)
+[2026-04-03 00:11:27,279] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 150/150 videos (4500 frames)
+[2026-04-03 00:11:27,280] INFO     preprocessing.frame_extraction –   → 4500 frames đã lưu
+[2026-04-03 00:11:27,280] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:11:27,280] INFO     preprocessing.frame_extraction – ▶ [val] Trích xuất NeuralTextures (150 videos)...
+[2026-04-03 00:13:55,251] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 50/150 videos (1500 frames)
+[2026-04-03 00:16:26,989] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 100/150 videos (3000 frames)
+[2026-04-03 00:19:00,006] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 150/150 videos (4500 frames)
+[2026-04-03 00:19:00,007] INFO     preprocessing.frame_extraction –   → 4500 frames đã lưu
+[2026-04-03 00:19:00,007] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:19:00,007] INFO     preprocessing.frame_extraction – ▶ [val] Trích xuất FaceShifter (150 videos)...
+[2026-04-03 00:21:26,693] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 50/150 videos (1500 frames)
+[2026-04-03 00:24:02,954] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 100/150 videos (3000 frames)
+[2026-04-03 00:26:39,663] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 150/150 videos (4500 frames)
+[2026-04-03 00:26:39,664] INFO     preprocessing.frame_extraction –   → 4500 frames đã lưu
+[2026-04-03 00:26:39,670] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:26:39,670] INFO     preprocessing.frame_extraction – ▶ [test] Trích xuất LIVE (150 videos)...
+[2026-04-03 00:29:10,040] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 50/150 videos (1499 frames)
+[2026-04-03 00:31:35,340] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 100/150 videos (2999 frames)
+[2026-04-03 00:34:20,436] INFO     preprocessing.frame_extraction –   [original] Đã xử lý 150/150 videos (4499 frames)
+[2026-04-03 00:34:20,437] INFO     preprocessing.frame_extraction –   → 4499 frames đã lưu
+[2026-04-03 00:34:20,437] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:34:20,437] INFO     preprocessing.frame_extraction – ▶ [test] Trích xuất Deepfakes (150 videos)...
+[2026-04-03 00:37:01,542] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 50/150 videos (1499 frames)
+[2026-04-03 00:39:27,888] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 100/150 videos (2999 frames)
+[2026-04-03 00:42:17,990] INFO     preprocessing.frame_extraction –   [Deepfakes] Đã xử lý 150/150 videos (4499 frames)
+[2026-04-03 00:42:17,990] INFO     preprocessing.frame_extraction –   → 4499 frames đã lưu
+[2026-04-03 00:42:17,990] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:42:17,990] INFO     preprocessing.frame_extraction – ▶ [test] Trích xuất FaceSwap (150 videos)...
+[2026-04-03 00:44:48,900] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 50/150 videos (1499 frames)
+[2026-04-03 00:47:14,052] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 100/150 videos (2999 frames)
+[2026-04-03 00:49:58,446] INFO     preprocessing.frame_extraction –   [FaceSwap] Đã xử lý 150/150 videos (4499 frames)
+[2026-04-03 00:49:58,446] INFO     preprocessing.frame_extraction –   → 4499 frames đã lưu
+[2026-04-03 00:49:58,446] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:49:58,446] INFO     preprocessing.frame_extraction – ▶ [test] Trích xuất Face2Face (150 videos)...
+[2026-04-03 00:52:30,291] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 50/150 videos (1500 frames)
+[2026-04-03 00:54:54,294] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 100/150 videos (3000 frames)
+[2026-04-03 00:57:37,432] INFO     preprocessing.frame_extraction –   [Face2Face] Đã xử lý 150/150 videos (4500 frames)
+[2026-04-03 00:57:37,432] INFO     preprocessing.frame_extraction –   → 4500 frames đã lưu
+[2026-04-03 00:57:37,434] INFO     preprocessing.frame_extraction – 
+[2026-04-03 00:57:37,434] INFO     preprocessing.frame_extraction – ▶ [test] Trích xuất NeuralTextures (150 videos)...
+[2026-04-03 01:00:08,704] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 50/150 videos (1499 frames)
+[2026-04-03 01:02:38,415] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 100/150 videos (2999 frames)
+[2026-04-03 01:05:23,780] INFO     preprocessing.frame_extraction –   [NeuralTextures] Đã xử lý 150/150 videos (4499 frames)
+[2026-04-03 01:05:23,780] INFO     preprocessing.frame_extraction –   → 4499 frames đã lưu
+[2026-04-03 01:05:23,780] INFO     preprocessing.frame_extraction – 
+[2026-04-03 01:05:23,781] INFO     preprocessing.frame_extraction – ▶ [test] Trích xuất FaceShifter (150 videos)...
+[2026-04-03 01:07:56,843] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 50/150 videos (1499 frames)
+[2026-04-03 01:10:23,218] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 100/150 videos (2999 frames)
+[2026-04-03 01:13:08,718] INFO     preprocessing.frame_extraction –   [FaceShifter] Đã xử lý 150/150 videos (4499 frames)
+[2026-04-03 01:13:08,718] INFO     preprocessing.frame_extraction –   → 4499 frames đã lưu
+[2026-04-03 01:13:08,720] INFO     preprocessing.pipeline_ffc23 – 
+[2026-04-03 01:13:08,721] INFO     preprocessing.pipeline_ffc23 – ▶  BƯỚC 3 / 4 – Data Cleaning (Nhẹ)
+[2026-04-03 01:13:08,725] INFO     preprocessing.cleaning_ffc23 – ============================================================
+[2026-04-03 01:13:08,725] INFO     preprocessing.cleaning_ffc23 – DATA CLEANING FF-C23 (NHẸ)
+[2026-04-03 01:13:08,725] INFO     preprocessing.cleaning_ffc23 – ============================================================
+[2026-04-03 01:13:08,726] INFO     preprocessing.cleaning_ffc23 – 
+[2026-04-03 01:13:08,726] INFO     preprocessing.cleaning_ffc23 – ▶ Cleaning [train]...
+[2026-04-03 01:13:17,630] INFO     preprocessing.cleaning_ffc23 –   Quét 125996 ảnh tìm file corrupt...
+[2026-04-03 01:40:14,990] INFO     preprocessing.cleaning_ffc23 –   Quét 125996 ảnh tìm ảnh mờ (threshold=50.0)...
+[2026-04-03 07:27:09,766] INFO     preprocessing.cleaning_ffc23 –   Tìm thấy 78193 ảnh mờ.
+[2026-04-03 07:27:19,061] INFO     preprocessing.cleaning_ffc23 –   Đã xoá 78193 ảnh mờ.
+[2026-04-03 07:27:19,094] INFO     preprocessing.cleaning_ffc23 – 
+[2026-04-03 07:27:19,094] INFO     preprocessing.cleaning_ffc23 – ▶ Cleaning [val]...
+[2026-04-03 07:27:21,432] INFO     preprocessing.cleaning_ffc23 –   Quét 26997 ảnh tìm file corrupt...
+[2026-04-03 07:33:21,225] INFO     preprocessing.cleaning_ffc23 –   Quét 26997 ảnh tìm ảnh mờ (threshold=50.0)...
+[2026-04-03 07:34:14,222] INFO     preprocessing.cleaning_ffc23 –   Tìm thấy 17009 ảnh mờ.
+[2026-04-03 07:34:15,962] INFO     preprocessing.cleaning_ffc23 –   Đã xoá 17009 ảnh mờ.
+[2026-04-03 07:34:15,971] INFO     preprocessing.cleaning_ffc23 – 
+[2026-04-03 07:34:15,971] INFO     preprocessing.cleaning_ffc23 – ▶ Cleaning [test]...
+[2026-04-03 07:34:19,703] INFO     preprocessing.cleaning_ffc23 –   Quét 26995 ảnh tìm file corrupt...
+[2026-04-03 07:41:25,719] INFO     preprocessing.cleaning_ffc23 –   Quét 26995 ảnh tìm ảnh mờ (threshold=50.0)...
+[2026-04-03 07:42:53,773] INFO     preprocessing.cleaning_ffc23 –   Tìm thấy 17850 ảnh mờ.
+[2026-04-03 07:42:57,025] INFO     preprocessing.cleaning_ffc23 –   Đã xoá 17850 ảnh mờ.
+[2026-04-03 07:42:57,038] INFO     preprocessing.cleaning_ffc23 – 
+[2026-04-03 07:42:57,038] INFO     preprocessing.cleaning_ffc23 – Tổng kết cleaning: {'corrupted_removed': 0, 'blurry_removed': 113052}
+[2026-04-03 07:42:57,039] INFO     preprocessing.pipeline_ffc23 – 
+[2026-04-03 07:42:57,039] INFO     preprocessing.pipeline_ffc23 – ▶  BƯỚC 4 / 4 – Thống Kê & DataLoaders
+[2026-04-03 07:42:57,040] INFO     preprocessing.pipeline_ffc23 – ──────────────────────────────────────────────────
+[2026-04-03 07:42:57,040] INFO     preprocessing.pipeline_ffc23 – THỐNG KÊ TRÍCH XUẤT:
+[2026-04-03 07:42:57,040] INFO     preprocessing.pipeline_ffc23 –   train : 125996 frames (live=21000, spoof=104996)
+[2026-04-03 07:42:57,041] INFO     preprocessing.pipeline_ffc23 –     Deepfakes          : 20999
+[2026-04-03 07:42:57,041] INFO     preprocessing.pipeline_ffc23 –     FaceSwap           : 20999
+[2026-04-03 07:42:57,041] INFO     preprocessing.pipeline_ffc23 –     Face2Face          : 20999
+[2026-04-03 07:42:57,043] INFO     preprocessing.pipeline_ffc23 –     NeuralTextures     : 20999
+[2026-04-03 07:42:57,043] INFO     preprocessing.pipeline_ffc23 –     FaceShifter        : 21000
+[2026-04-03 07:42:57,043] INFO     preprocessing.pipeline_ffc23 –   val   : 26997 frames (live=4500, spoof=22497)
+[2026-04-03 07:42:57,043] INFO     preprocessing.pipeline_ffc23 –     Deepfakes          : 4497
+[2026-04-03 07:42:57,044] INFO     preprocessing.pipeline_ffc23 –     FaceSwap           : 4500
+[2026-04-03 07:42:57,044] INFO     preprocessing.pipeline_ffc23 –     Face2Face          : 4500
+[2026-04-03 07:42:57,045] INFO     preprocessing.pipeline_ffc23 –     NeuralTextures     : 4500
+[2026-04-03 07:42:57,045] INFO     preprocessing.pipeline_ffc23 –     FaceShifter        : 4500
+[2026-04-03 07:42:57,045] INFO     preprocessing.pipeline_ffc23 –   test  : 26995 frames (live=4499, spoof=22496)
+[2026-04-03 07:42:57,046] INFO     preprocessing.pipeline_ffc23 –     Deepfakes          : 4499
+[2026-04-03 07:42:57,046] INFO     preprocessing.pipeline_ffc23 –     FaceSwap           : 4499
+[2026-04-03 07:42:57,046] INFO     preprocessing.pipeline_ffc23 –     Face2Face          : 4500
+[2026-04-03 07:42:57,046] INFO     preprocessing.pipeline_ffc23 –     NeuralTextures     : 4499
+[2026-04-03 07:42:57,048] INFO     preprocessing.pipeline_ffc23 –     FaceShifter        : 4499
+[2026-04-03 07:42:57,048] INFO     preprocessing.pipeline_ffc23 – 
+[2026-04-03 07:42:57,048] INFO     preprocessing.pipeline_ffc23 – KẾT QUẢ CLEANING:
+[2026-04-03 07:42:57,049] INFO     preprocessing.pipeline_ffc23 –   corrupted_removed      : 0
+[2026-04-03 07:42:57,049] INFO     preprocessing.pipeline_ffc23 –   blurry_removed         : 113052
+[2026-04-03 07:42:57,049] INFO     preprocessing.pipeline_ffc23 – ──────────────────────────────────────────────────
+[2026-04-03 07:42:57,448] INFO     preprocessing.dataset_ffc23 – [train] Phân bố class (tổng=47803):
+[2026-04-03 07:42:57,448] INFO     preprocessing.dataset_ffc23 –   live     :  9803  (20.5%)
+[2026-04-03 07:42:57,449] INFO     preprocessing.dataset_ffc23 –   spoof    : 38000  (79.5%)
+[2026-04-03 07:42:57,498] INFO     preprocessing.dataset_ffc23 – WeightedRandomSampler – weights: {'live': '4.88', 'spoof': '1.26'}
+[2026-04-03 07:42:57,504] INFO     preprocessing.dataset_ffc23 – [train] DataLoader sẵn sàng – 1493 batches (batch_size=32).
+[2026-04-03 07:42:57,606] INFO     preprocessing.dataset_ffc23 – [val] Phân bố class (tổng=9988):
+[2026-04-03 07:42:57,606] INFO     preprocessing.dataset_ffc23 –   live     :  2100  (21.0%)
+[2026-04-03 07:42:57,607] INFO     preprocessing.dataset_ffc23 –   spoof    :  7888  (79.0%)
+[2026-04-03 07:42:57,608] INFO     preprocessing.dataset_ffc23 – [val] DataLoader sẵn sàng – 313 batches (batch_size=32).
+[2026-04-03 07:42:57,678] INFO     preprocessing.dataset_ffc23 – [test] Phân bố class (tổng=9145):
+[2026-04-03 07:42:57,679] INFO     preprocessing.dataset_ffc23 –   live     :  2005  (21.9%)
+[2026-04-03 07:42:57,680] INFO     preprocessing.dataset_ffc23 –   spoof    :  7140  (78.1%)
+[2026-04-03 07:42:57,681] INFO     preprocessing.dataset_ffc23 – [test] DataLoader sẵn sàng – 286 batches (batch_size=32).
+[2026-04-03 07:42:57,682] INFO     preprocessing.dataset_ffc23 – Class weights: {'live': 2.438182189125778, 'spoof': 0.6289868421052631}
+[2026-04-03 07:42:57,683] INFO     preprocessing.pipeline_ffc23 – Loss weights đề xuất (CrossEntropyLoss): [2.4381821155548096, 0.6289868354797363]
+[2026-04-03 07:42:57,684] INFO     preprocessing.pipeline_ffc23 – 
+[2026-04-03 07:42:57,685] INFO     preprocessing.pipeline_ffc23 – ======================================================================
+[2026-04-03 07:42:57,685] INFO     preprocessing.pipeline_ffc23 –   PIPELINE HOÀN TẤT  (64347.6 s)
+[2026-04-03 07:42:57,685] INFO     preprocessing.pipeline_ffc23 – ======================================================================
+[2026-04-03 07:42:57,686] INFO     preprocessing.pipeline_ffc23 – Output dataset : D:\Deeplearning\face-attendance-system\dataset
+[2026-04-03 07:42:57,686] INFO     preprocessing.pipeline_ffc23 – Log file       : D:\Deeplearning\face-attendance-system\preprocessing\outputs\pipeline_ffc23.log

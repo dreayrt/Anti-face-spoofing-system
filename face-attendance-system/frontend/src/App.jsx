@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CameraPage from "./pages/Camera/CameraPage";
+import RegisterEmployee from "./pages/Register/RegisterEmployee";
 
 const NavLink = ({ to, children }) => {
   const location = useLocation();
@@ -63,6 +64,7 @@ function AppContent() {
           <div className="space-x-2 flex p-1 bg-slate-100 rounded-2xl border border-slate-200">
             <NavLink to="/">Dashboard</NavLink>
             <NavLink to="/camera">Live </NavLink>
+            <NavLink to="/register">Register</NavLink>
           </div>
         </div>
       </nav>
@@ -73,6 +75,7 @@ function AppContent() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/camera" element={<CameraPage />} />
+            <Route path="/register" element={<RegisterEmployee />} />
           </Routes>
         </div>
       </main>

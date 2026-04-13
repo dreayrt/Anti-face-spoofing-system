@@ -6,7 +6,8 @@ Dự án này là một kiến trúc vi dịch vụ (microservice) gồm 3 phầ
 
 - **`frontend/`**: Ứng dụng React sử dụng Vite và TailwindCSS. Chạy trên cổng `5173`.
 - **`backend/`**: Máy chủ chính FastAPI xử lý logic nghiệp vụ, kết nối cơ sở dữ liệu và định tuyến API. Chạy trên cổng `8000`.
-- **`ai-service/`**: Worker FastAPI chạy các mô hình Deep Learning riêng biệt (hiện đang dùng dữ liệu mock) để khớp khuôn mặt và chống giả mạo. Chạy trên cổng `8001`.
+- **`ai-service/`**: Worker FastAPI chạy mô hình Deep Learning **CNN + DSP + LSTM** để chống giả mạo khuôn mặt (anti-spoofing) và khớp khuôn mặt (face matching). Chạy trên cổng `8001`.
+- **`preprocessing/`**: Pipeline tiền xử lý dữ liệu huấn luyện từ CelebA Spoof và FaceForensics++ (FF-C23).
 
 ---
 
@@ -16,7 +17,7 @@ Bạn sẽ cần chạy ba cửa sổ dòng lệnh (terminal/tab) riêng biệt,
 
 ### 1. Khởi chạy AI Service (Terminal 1)
 
-Service này load các mô hình Deep Learning (mock) và mở một endpoint để xử lý hình ảnh dạng base64.
+Service này load mô hình Anti-Spoofing **CNN + DSP + LSTM** (nếu đã train) hoặc fallback về Mock Model.
 
 ```bash
 cd face-attendance-system/ai-service
@@ -29,12 +30,17 @@ venv\Scripts\activate
 # source venv/bin/activate
 
 # Cài đặt các thư viện phụ thuộc
-pip install fastapi uvicorn numpy opencv-python pydantic
+pip install -r requirements.txt
+
+# (Tùy chọn) Chạy integration test để kiểm tra model
+python test_integration.py
 
 # Chạy server xử lý AI (inference)
 python inference/face_match.py
 ```
 *Dịch vụ AI hiện sẽ chạy tại địa chỉ `http://localhost:8001`*
+
+> **Lưu ý:** Khi khởi động, AI Service sẽ tự động tìm checkpoint tại `models/weights/antispoof_cnn_dsp_lstm.pth`. Nếu chưa train → dùng MockModel. Nếu đã train → dùng model thật.
 
 ---
 
@@ -80,6 +86,59 @@ npm run dev
 
 ---
 
+## 🤖 Huấn luyện mô hình Anti-Spoofing (Training)
+
+Sau khi đã chạy preprocessing pipeline để chuẩn bị dữ liệu, bạn có thể huấn luyện mô hình CNN + DSP + LSTM:
+
+```bash
+cd face-attendance-system/ai-service
+
+# Kích hoạt môi trường ảo
+venv\Scripts\activate
+
+# Train với cấu hình mặc định (MobileNetV2, 30 epochs, lr=0.0001)
+python train.py
+
+# Train với backbone khác
+python train.py --backbone resnet50
+python train.py --backbone efficientnet_b0
+
+# Tùy chỉnh hyperparameters
+python train.py --epochs 50 --lr 0.0001 --batch-size 16
+
+# Resume training từ checkpoint trước
+python train.py --resume
+```
+
+**Output sau khi train:**
+- `models/weights/antispoof_cnn_dsp_lstm.pth` — Best model checkpoint
+- `models/weights/training_log.json` — Lịch sử training metrics
+
+> Sau khi train xong, chỉ cần khởi động lại AI Service — model thật sẽ được tự động load.
+
+---
+
+## 📊 Tiền xử lý dữ liệu (Preprocessing)
+
+```bash
+cd face-attendance-system
+
+# Kích hoạt môi trường ảo preprocessing
+cd preprocessing
+pip install -r requirements.txt
+cd ..
+
+# Chạy pipeline CelebA Spoof
+python -m preprocessing
+
+# Chạy pipeline FaceForensics++ (FF-C23)
+python -m preprocessing.pipeline_ffc23
+```
+
+Output: `dataset/{train,val,test}/{celeba-spoof,ff-c23}/{live,spoof}/`
+
+---
+
 ## 🧪 Kiểm tra hoạt động của hệ thống
 
 1. Mở trình duyệt và truy cập vào URL của Frontend (`http://localhost:5173`).
@@ -91,5 +150,6 @@ npm run dev
 1. Ứng dụng React chụp một khung hình (frame) từ webcam và chuyển nó thành chuỗi base64.
 2. Nó gửi một yêu cầu HTTP POST đến `http://localhost:8000/api/v1/face/recognize`.
 3. Backend FastAPI nhận yêu cầu và dùng `httpx` để chuyển tiếp (forward) chuỗi tới `http://localhost:8001/predict`.
-4. AI Service chạy mô hình mock `MockAntiSpoofModel` và `MockFaceRecognitionModel`.
-5. Kết quả đi ngược lại về phía giao diện React (UI) để hiển thị thông báo thành công hay thất bại.
+4. AI Service chạy mô hình **CNN + DSP + LSTM** (hoặc MockModel nếu chưa train) để kiểm tra liveness.
+5. Nếu khuôn mặt thật → so khớp Face Descriptor 128D với CSDL bằng Euclidean Distance.
+6. Kết quả đi ngược lại về phía giao diện React (UI) để hiển thị thông báo thành công hay thất bại.

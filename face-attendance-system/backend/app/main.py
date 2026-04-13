@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.endpoints import face
+from app.database.session import engine, Base
+from app.models.employee import Employee # Ensure model is imported so tables are created
+
+# Create Database Tables
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title="Face Attendance API",
@@ -25,3 +30,4 @@ app.include_router(face.router, prefix="/api/v1/face", tags=["Face Recognition"]
 def health_check():
     """Health check endpoint to ensure the server is running."""
     return {"status": "ok", "message": "Face Attendance API is running"}
+

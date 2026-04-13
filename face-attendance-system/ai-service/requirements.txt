@@ -1,0 +1,28 @@
+# ═══════════════════════════════════════════════════════════════
+# AI Service Dependencies — Face Anti-Spoofing (CNN + DSP + LSTM)
+# ═══════════════════════════════════════════════════════════════
+
+# Deep Learning Framework
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Scientific Computing
+numpy>=1.24.0
+scipy>=1.11.0
+
+# Image Processing
+opencv-python>=4.8.0
+Pillow>=10.0.0
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.0.0
+
+# Database
+psycopg2-binary>=2.9.0
+
+# Training utilities
+scikit-learn>=1.3.0
+matplotlib>=3.7.0
+tqdm>=4.65.0

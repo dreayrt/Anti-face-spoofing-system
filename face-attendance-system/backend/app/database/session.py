@@ -5,7 +5,7 @@ import os
 # Ideally, load this from python-dotenv or pydantic BaseSettings
 DATABASE_URL = os.getenv(
     "DATABASE_URL", 
-    "postgresql://admin:securepassword@localhost:5432/face_attendance"
+    "postgresql://postgres:123456@localhost:5432/FaceDetect"
 )
 
 # Create the SQLAlchemy engine connecting to the PostgreSQL database

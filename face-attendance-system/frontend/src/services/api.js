@@ -17,14 +17,19 @@ export const apiService = {
     return response.data;
   },
   
-  // Submit face image and bounding box for verification
-  verifyFace: async (imageBase64, faceBox) => {
-    // In a real implementation you might send a multipart/form-data with a blob
-    // For simplicity, we'll send base64 encoded JSON here.
+  // Submit face image, bounding box, and descriptor for verification
+  verifyFace: async (imageBase64, faceBox, descriptor) => {
     const response = await apiClient.post('/face/recognize', { 
       image: imageBase64,
-      box: faceBox
+      box: faceBox,
+      descriptor: descriptor
     });
+    return response.data;
+  },
+
+  // Register a new employee with face image
+  registerEmployee: async (employeeData) => {
+    const response = await apiClient.post('/face/register', employeeData);
     return response.data;
   },
 
@@ -34,3 +39,4 @@ export const apiService = {
     return response.data;
   }
 };
+

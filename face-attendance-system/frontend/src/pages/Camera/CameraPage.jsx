@@ -24,7 +24,10 @@ const CameraPage = () => {
     const loadModels = async () => {
       try {
         await Promise.all([
-          faceapi.nets.tinyFaceDetector.loadFromUri('/models')
+          faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+          faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+          faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+          faceapi.nets.faceRecognitionNet.loadFromUri('/models')
         ]);
         console.log('[FaceDetect] Models loaded successfully');
         setModelsLoaded(true);
@@ -125,8 +128,70 @@ const CameraPage = () => {
     const imageData = captureCanvas.toDataURL('image/jpeg', 0.8);
     
     try {
-      // Send both image and bounding box
-      const result = await apiService.verifyFace(imageData, faceBox);
+      // Use SSD MobileNet V1 (more accurate than TinyFaceDetector) for the scan
+      const detection = await faceapi
+        .detectSingleFace(videoRef.current, new faceapi.SsdMobilenetv1Options({ minConfidence: 0.7 }))
+        .withFaceLandmarks()
+        .withFaceDescriptor();
+      
+      if (!detection) {
+        setError('Could not detect face clearly. Remove any obstructions and try again.');
+        setIsProcessing(false);
+        return;
+      }
+
+      // Face quality check: verify key facial landmarks are properly visible
+      const landmarks = detection.landmarks;
+      const positions = landmarks.positions;
+      const faceBox = detection.detection.box;
+
+      // Get average Y positions of key facial feature groups
+      const leftEyePoints = positions.slice(36, 42);
+      const rightEyePoints = positions.slice(42, 48);
+      const nosePoints = positions.slice(27, 36);
+      const mouthPoints = positions.slice(48, 68);
+      
+      const avgEyeY = [...leftEyePoints, ...rightEyePoints].reduce((s, p) => s + p.y, 0) / 12;
+      const avgNoseY = nosePoints.reduce((s, p) => s + p.y, 0) / nosePoints.length;
+      const avgMouthY = mouthPoints.reduce((s, p) => s + p.y, 0) / mouthPoints.length;
+
+      // Check 1: Landmarks must be in correct vertical order (eyes above nose above mouth)
+      if (avgEyeY >= avgNoseY || avgNoseY >= avgMouthY) {
+        setError('Face landmarks are not properly detected. Please show your full face.');
+        setIsProcessing(false);
+        return;
+      }
+
+      // Check 2: Eyes must be in the upper 60% of the face bounding box
+      const eyeRelativeY = (avgEyeY - faceBox.y) / faceBox.height;
+      if (eyeRelativeY > 0.6) {
+        setError('Eyes not properly visible. Please remove any obstructions from your face.');
+        setIsProcessing(false);
+        return;
+      }
+
+      // Check 3: Mouth must be in the lower 60% of the face bounding box  
+      const mouthRelativeY = (avgMouthY - faceBox.y) / faceBox.height;
+      if (mouthRelativeY < 0.4) {
+        setError('Face is partially obstructed. Please show your complete face.');
+        setIsProcessing(false);
+        return;
+      }
+
+      // Check 4: The vertical spread of features should cover at least 35% of face height
+      const featureSpread = (avgMouthY - avgEyeY) / faceBox.height;
+      if (featureSpread < 0.25) {
+        setError('Cannot verify face integrity. Please ensure your full face is visible.');
+        setIsProcessing(false);
+        return;
+      }
+
+      console.log(`[FaceQuality] eyeRelY=${eyeRelativeY.toFixed(2)}, mouthRelY=${mouthRelativeY.toFixed(2)}, spread=${featureSpread.toFixed(2)}, score=${detection.detection.score.toFixed(3)}`);
+
+      const descriptor = Array.from(detection.descriptor);
+
+      // Send image, bounding box, and face descriptor
+      const result = await apiService.verifyFace(imageData, faceBox, descriptor);
       setVerificationResult(result);
       
       // Clear result after 5 seconds to reset kiosk

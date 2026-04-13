@@ -15,7 +15,7 @@ class MockAntiSpoofModel:
         # Imagine extracting features through a CNN here.
         # For our mock, return a random score indicating probability of being a real face.
         # High probability means it's real.
-        score = np.random.uniform(0.75, 0.99)
+        score = np.random.uniform(0.85, 0.99)
         
         # If the input was completely black or noisy, we might return a low score.
         if np.mean(face_crop) < 10:

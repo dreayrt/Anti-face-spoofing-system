@@ -1,0 +1,22 @@
+# Virtual environments
+venv/
+env/
+.env
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Datasets and Weights
+data/
+dataset/
+ai-service/models/weights/
+ai-service/training_logs/
+ai-service/venv/
+
+# Node modules
+frontend/node_modules/
+frontend/dist/
+.DS_Store

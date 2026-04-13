@@ -1,0 +1,85 @@
+[2026-04-02 12:32:37,511] INFO     preprocessing.pipeline – ======================================================================
+[2026-04-02 12:32:37,511] INFO     preprocessing.pipeline –   FACE ANTI-SPOOFING PREPROCESSING PIPELINE
+[2026-04-02 12:32:37,512] INFO     preprocessing.pipeline – ======================================================================
+[2026-04-02 12:32:37,512] INFO     preprocessing.pipeline – Raw data dir  : D:\Deeplearning\face-attendance-system\data\anti-spoof\raw\celeba-spoof
+[2026-04-02 12:32:37,513] INFO     preprocessing.pipeline – Output dir    : D:\Deeplearning\face-attendance-system\dataset
+[2026-04-02 12:32:37,513] INFO     preprocessing.pipeline – Image size    : 224×224
+[2026-04-02 12:32:37,514] INFO     preprocessing.pipeline – Split ratios  : 70% / 15% / 15%
+[2026-04-02 12:32:37,514] INFO     preprocessing.pipeline – 
+[2026-04-02 12:32:37,514] INFO     preprocessing.pipeline – ▶  STEP 1 / 6 – Data Cleaning
+[2026-04-02 12:32:37,514] INFO     preprocessing.cleaning – ============================================================
+[2026-04-02 12:32:37,514] INFO     preprocessing.cleaning – STARTING DATA CLEANING on 'D:\Deeplearning\face-attendance-system\data\anti-spoof\raw\celeba-spoof'
+[2026-04-02 12:32:37,515] INFO     preprocessing.cleaning – ============================================================
+[2026-04-02 12:32:38,076] INFO     preprocessing.cleaning – Scanning 13881 images for corruption in 'D:\Deeplearning\face-attendance-system\data\anti-spoof\raw\celeba-spoof' ...
+[2026-04-02 12:33:25,267] INFO     preprocessing.cleaning – Found 0 corrupted images.
+[2026-04-02 12:33:26,037] INFO     preprocessing.cleaning – Computing perceptual hashes for 13881 images ...
+[2026-04-02 12:33:34,773] INFO     preprocessing.cleaning – Found 0 duplicate groups (0 extra images).
+[2026-04-02 12:33:35,422] INFO     preprocessing.cleaning – Running face detection on 13881 images ...
+[2026-04-02 12:34:10,849] INFO     preprocessing.cleaning – Found 0 images with no detectable face.
+[2026-04-02 12:34:10,902] INFO     preprocessing.cleaning – REMOVE_NO_FACE is False — 0 images without faces will be KEPT. Set config.REMOVE_NO_FACE = True to delete them.
+[2026-04-02 12:34:10,902] INFO     preprocessing.cleaning – Cleaning summary: {'corrupted_removed': 0, 'duplicates_removed': 0, 'no_face_removed': 0}
+[2026-04-02 12:34:10,903] INFO     preprocessing.pipeline – 
+[2026-04-02 12:34:10,903] INFO     preprocessing.pipeline – ▶  STEP 2 / 6 – Data Splitting
+[2026-04-02 12:34:10,903] INFO     preprocessing.splitting – ============================================================
+[2026-04-02 12:34:10,904] INFO     preprocessing.splitting – STARTING DATA SPLITTING
+[2026-04-02 12:34:10,904] INFO     preprocessing.splitting – ============================================================
+[2026-04-02 12:34:10,905] WARNING  preprocessing.splitting – Identity-based splitting is NOT available (no identity labels in filenames). Using stratified RANDOM split instead. The same person may appear in multiple splits, which could cause slight data leakage.
+[2026-04-02 12:34:11,493] INFO     preprocessing.splitting – Collected 13881 total images from 'D:\Deeplearning\face-attendance-system\data\anti-spoof\raw\celeba-spoof'.
+[2026-04-02 12:34:11,495] INFO     preprocessing.splitting –   live     : 8378
+[2026-04-02 12:34:11,497] INFO     preprocessing.splitting –   spoof    : 5503
+[2026-04-02 12:34:11,584] INFO     preprocessing.splitting – Split train : 9716 images
+[2026-04-02 12:34:11,585] INFO     preprocessing.splitting –   live     : 5864
+[2026-04-02 12:34:11,587] INFO     preprocessing.splitting –   spoof    : 3852
+[2026-04-02 12:34:11,587] INFO     preprocessing.splitting – Split val   : 2082 images
+[2026-04-02 12:34:11,588] INFO     preprocessing.splitting –   live     : 1257
+[2026-04-02 12:34:11,589] INFO     preprocessing.splitting –   spoof    : 825
+[2026-04-02 12:34:11,589] INFO     preprocessing.splitting – Split test  : 2083 images
+[2026-04-02 12:34:11,590] INFO     preprocessing.splitting –   live     : 1257
+[2026-04-02 12:34:11,591] INFO     preprocessing.splitting –   spoof    : 826
+[2026-04-02 12:34:11,593] INFO     preprocessing.splitting – Copying images to 'D:\Deeplearning\face-attendance-system\dataset' ...
+[2026-04-02 12:34:25,040] INFO     preprocessing.splitting – Copy complete.
+[2026-04-02 12:34:25,040] INFO     preprocessing.pipeline – 
+[2026-04-02 12:34:25,041] INFO     preprocessing.pipeline – ▶  STEP 3 / 6 – Summary Statistics
+[2026-04-02 12:34:25,041] INFO     preprocessing.pipeline – ──────────────────────────────────────────────────
+[2026-04-02 12:34:25,042] INFO     preprocessing.pipeline – Cleaning results:
+[2026-04-02 12:34:25,042] INFO     preprocessing.pipeline –   corrupted_removed      : 0
+[2026-04-02 12:34:25,042] INFO     preprocessing.pipeline –   duplicates_removed     : 0
+[2026-04-02 12:34:25,042] INFO     preprocessing.pipeline –   no_face_removed        : 0
+[2026-04-02 12:34:25,043] INFO     preprocessing.pipeline – 
+[2026-04-02 12:34:25,043] INFO     preprocessing.pipeline – Split sizes:
+[2026-04-02 12:34:25,046] INFO     preprocessing.pipeline –   train :  9716  (live=5864, spoof=3852)
+[2026-04-02 12:34:25,047] INFO     preprocessing.pipeline –   val   :  2082  (live=1257, spoof=825)
+[2026-04-02 12:34:25,048] INFO     preprocessing.pipeline –   test  :  2083  (live=1257, spoof=826)
+[2026-04-02 12:34:25,048] INFO     preprocessing.pipeline –   TOTAL : 13881
+[2026-04-02 12:34:25,049] INFO     preprocessing.pipeline – ──────────────────────────────────────────────────
+[2026-04-02 12:34:25,049] INFO     preprocessing.pipeline – 
+[2026-04-02 12:34:25,049] INFO     preprocessing.pipeline – ▶  STEP 4 / 6 – Creating PyTorch DataLoaders
+[2026-04-02 12:34:25,089] INFO     preprocessing.dataset – [train] Class distribution (total=9716):
+[2026-04-02 12:34:25,089] INFO     preprocessing.dataset –   live     :  5864  (60.4%)
+[2026-04-02 12:34:25,089] INFO     preprocessing.dataset –   spoof    :  3852  (39.6%)
+[2026-04-02 12:34:25,101] INFO     preprocessing.dataset – WeightedRandomSampler created – effective weights: {'live': '1.66', 'spoof': '2.52'}
+[2026-04-02 12:34:25,179] INFO     preprocessing.dataset – [train] DataLoader ready – 303 batches (batch_size=32).
+[2026-04-02 12:34:25,191] INFO     preprocessing.dataset – [val] Class distribution (total=2082):
+[2026-04-02 12:34:25,192] INFO     preprocessing.dataset –   live     :  1257  (60.4%)
+[2026-04-02 12:34:25,192] INFO     preprocessing.dataset –   spoof    :   825  (39.6%)
+[2026-04-02 12:34:25,192] INFO     preprocessing.dataset – [val] DataLoader ready – 66 batches (batch_size=32).
+[2026-04-02 12:34:25,203] INFO     preprocessing.dataset – [test] Class distribution (total=2083):
+[2026-04-02 12:34:25,203] INFO     preprocessing.dataset –   live     :  1257  (60.3%)
+[2026-04-02 12:34:25,204] INFO     preprocessing.dataset –   spoof    :   826  (39.7%)
+[2026-04-02 12:34:25,206] INFO     preprocessing.dataset – [test] DataLoader ready – 66 batches (batch_size=32).
+[2026-04-02 12:34:25,209] INFO     preprocessing.dataset – Class weights: {'live': 0.8284447476125512, 'spoof': 1.2611630321910696}
+[2026-04-02 12:34:25,212] INFO     preprocessing.pipeline – Recommended loss weights (CrossEntropyLoss): [0.8284447193145752, 1.2611629962921143]
+[2026-04-02 12:34:25,213] INFO     preprocessing.pipeline – 
+[2026-04-02 12:34:25,214] INFO     preprocessing.pipeline – ▶  STEP 5 / 6 – Visualizing Augmented Samples
+[2026-04-02 12:34:27,144] INFO     preprocessing.visualization – Saved augmented-sample visualization → D:\Deeplearning\face-attendance-system\preprocessing\outputs\augmented_samples_train.png
+[2026-04-02 12:34:28,364] INFO     preprocessing.visualization – Saved augmented-sample visualization → D:\Deeplearning\face-attendance-system\preprocessing\outputs\augmented_samples_val.png
+[2026-04-02 12:34:29,622] INFO     preprocessing.visualization – Saved augmented-sample visualization → D:\Deeplearning\face-attendance-system\preprocessing\outputs\augmented_samples_test.png
+[2026-04-02 12:34:29,625] INFO     preprocessing.pipeline – 
+[2026-04-02 12:34:29,625] INFO     preprocessing.pipeline – ▶  STEP 6 / 6 – Plotting Class Distribution
+[2026-04-02 12:34:29,890] INFO     preprocessing.visualization – Saved class-distribution chart → D:\Deeplearning\face-attendance-system\preprocessing\outputs\class_distribution.png
+[2026-04-02 12:34:29,890] INFO     preprocessing.pipeline – 
+[2026-04-02 12:34:29,890] INFO     preprocessing.pipeline – ======================================================================
+[2026-04-02 12:34:29,891] INFO     preprocessing.pipeline –   PIPELINE COMPLETE  (112.4 s)
+[2026-04-02 12:34:29,891] INFO     preprocessing.pipeline – ======================================================================
+[2026-04-02 12:34:29,891] INFO     preprocessing.pipeline – Output dataset : D:\Deeplearning\face-attendance-system\dataset
+[2026-04-02 12:34:29,891] INFO     preprocessing.pipeline – Visualizations : D:\Deeplearning\face-attendance-system\preprocessing\outputs
