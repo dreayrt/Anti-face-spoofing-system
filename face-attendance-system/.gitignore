@@ -15,8 +15,21 @@ dataset/
 ai-service/models/weights/
 ai-service/training_logs/
 ai-service/venv/
+ai-service/swin_transformer/models/weights/
+*.pth
 
 # Node modules
 frontend/node_modules/
 frontend/dist/
 .DS_Store
+
+
+*.pth
+*.pt
+*.ckpt
+
+training_logs/
+test_logs/
+
+node_modules/
+.vite/

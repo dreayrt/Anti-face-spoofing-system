@@ -14,7 +14,7 @@ Usage:
     python train.py --spoof-weight 3.0         # Asymmetric spoof penalty
 
 Output:
-    models/weights/antispoof_cnn_dsp_lstm.pth  — Best model checkpoint
+    models/weights/antispoof_swin_transformer.pth  — Best model checkpoint
     models/weights/training_log.json           — Training metrics history
     training_logs/                             — Training charts (loss, accuracy, precision, ...)
 """
@@ -43,15 +43,14 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 # Add inference dir to path so we can import the model
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "inference"))
-from antispoof_model import CNNDSPLSTMAntiSpoof
+from model import SwinTransformerBaseline
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # Configuration
 # ═══════════════════════════════════════════════════════════════════════════════
 
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 DATASET_DIR = PROJECT_ROOT / "dataset"
 WEIGHTS_DIR = Path(__file__).resolve().parent / "models" / "weights"
 LOGS_DIR = Path(__file__).resolve().parent / "training_logs"
@@ -988,9 +987,9 @@ def plot_confusion_matrix(cm: list, output_dir: Path, epoch: int = None):
 
 def main(args):
     print("=" * 70)
-    print("  CNN + DSP + LSTM Anti-Spoofing Model — Training (v2)")
+    print("  Swin Transformer Baseline Anti-Spoofing Model — Training")
     print("=" * 70)
-    print(f"  Backbone:       {args.backbone}")
+    print(f"  Model name:     {args.model_name}")
     print(f"  Epochs:         {args.epochs}")
     print(f"  Batch size:     {args.batch_size}")
     print(f"  Learning rate:  {args.lr}")
@@ -1005,7 +1004,7 @@ def main(args):
     print(f"  Early stop:     val_loss (patience={args.patience})")
     print(f"  Dataset dir:    {DATASET_DIR}")
     print(f"  Output dir:     {WEIGHTS_DIR}")
-    if args.multi_frame:
+    if False:
         print(f"  Mode:           MULTI-FRAME (seq_len={args.seq_len})")
     else:
         print(f"  Mode:           SINGLE-FRAME")
@@ -1021,7 +1020,7 @@ def main(args):
     # ── Datasets ─────────────────────────────────────────────────────────
     print("\n[Data] Loading datasets...")
 
-    if args.multi_frame:
+    if False:
         from video_dataset import VideoSequenceDataset
         from temporal_augmentation import TemporalAugmentor
         print(f"  [Multi-Frame] seq_len={args.seq_len}, temporal augmentation=ON")
@@ -1121,15 +1120,11 @@ def main(args):
     )
 
     # ── Model ────────────────────────────────────────────────────────────
-    print(f"\n[Model] Building CNN+DSP+LSTM (backbone={args.backbone})...")
-    model = CNNDSPLSTMAntiSpoof(
+    print(f"\n[Model] Building SwinTransformerBaseline (model_name={args.model_name})...")
+    model = SwinTransformerBaseline(
         num_classes=2,
-        backbone=args.backbone,
-        lstm_hidden=256,
-        lstm_layers=2,
-        dsp_output_dim=256,
-        dropout=args.dropout,
         pretrained=True,
+        model_name=args.model_name
     ).to(device)
 
     total_params = sum(p.numel() for p in model.parameters())
@@ -1165,8 +1160,8 @@ def main(args):
     training_log = []
 
     WEIGHTS_DIR.mkdir(parents=True, exist_ok=True)
-    checkpoint_path = WEIGHTS_DIR / "antispoof_cnn_dsp_lstm.pth"
-    last_checkpoint_path = WEIGHTS_DIR / "antispoof_last.pth"
+    checkpoint_path = WEIGHTS_DIR / "antispoof_swin_transformer.pth"
+    last_checkpoint_path = WEIGHTS_DIR / "antispoof_swin_last.pth"
 
     if args.resume and last_checkpoint_path.exists():
         print(f"\n[Resume] Loading checkpoint from {last_checkpoint_path}")
@@ -1257,7 +1252,7 @@ def main(args):
                 "val_loss": val_loss,
                 "best_val_loss": best_val_loss,
                 "metrics": epoch_metrics,
-                "backbone": args.backbone,
+                "model_name": args.model_name,
                 "training_log": training_log,
             }, checkpoint_path)
 
@@ -1331,7 +1326,7 @@ def main(args):
                 "val_loss": swa_val_loss,
                 "best_val_loss": best_val_loss,
                 "metrics": swa_metrics,
-                "backbone": args.backbone,
+                "model_name": args.model_name,
                 "training_log": training_log,
                 "is_swa": True,
                 "optimal_threshold": optimal_threshold,
@@ -1402,13 +1397,13 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Train CNN+DSP+LSTM Anti-Spoofing Model (v2 — FocalLoss + SWA)",
+        description="Train Swin Transformer Baseline Anti-Spoofing Model",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
-    parser.add_argument("--backbone", type=str, default="efficientnet_b0",
-                        choices=["mobilenet_v2", "resnet50", "efficientnet_b0"],
-                        help="CNN backbone architecture (default: efficientnet_b0)")
+    parser.add_argument("--model-name", type=str, default="swin_v2_t",
+                        choices=["swin_v2_t", "swin_v2_s", "swin_v2_b"],
+                        help="Swin Transformer model architecture (default: swin_v2_t)")
     parser.add_argument("--epochs", type=int, default=50,
                         help="Number of training epochs (default: 50)")
     parser.add_argument("--batch-size", type=int, default=32,

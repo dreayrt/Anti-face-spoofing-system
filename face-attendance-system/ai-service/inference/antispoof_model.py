@@ -261,12 +261,20 @@ class CNNDSPLSTMAntiSpoof(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Full forward pass: Image → CNN → [Spatial ∥ DSP] → LSTM → Classifier.
 
+        Automatically detects input shape:
+          - (B, 3, 224, 224)    → single-frame forward pass
+          - (B, T, 3, 224, 224) → multi-frame forward pass via forward_multi_frame()
+
         Args:
-            x: Input images, tensor of shape (B, 3, 224, 224).
+            x: Input tensor of shape (B, 3, 224, 224) or (B, T, 3, 224, 224).
 
         Returns:
             Logits tensor of shape (B, num_classes).
         """
+        # Auto-detect: if 5D input (B, T, C, H, W), route to multi-frame
+        if x.dim() == 5:
+            return self.forward_multi_frame(x)
+
         # 1. CNN backbone → feature maps
         feature_maps = self.cnn_backbone(x)  # (B, C, H, W)
 
@@ -581,3 +589,30 @@ class AntiSpoofPredictor:
         confidence = score if is_live_result else (1.0 - score)
 
         return is_live_result, confidence, label
+
+    @torch.no_grad()
+    def predict_video(self, face_crops_bgr: list) -> float:
+        """Predict liveness score for a sequence of face crops (video).
+        
+        Args:
+            face_crops_bgr: List of face crops in BGR format (T frames).
+            
+        Returns:
+            Float liveness score for the whole sequence.
+        """
+        if not face_crops_bgr:
+            return 0.0
+            
+        # Preprocess each frame
+        tensors = [self.preprocess(crop) for crop in face_crops_bgr] # list of (1, 3, 224, 224)
+        
+        # Stack along time dimension -> (1, T, 3, 224, 224)
+        seq_tensor = torch.stack(tensors, dim=1).to(self.device)
+        
+        # Forward pass through multi_frame API
+        logits = self.model.forward_multi_frame(seq_tensor) # (1, 2)
+        
+        probs = torch.softmax(logits, dim=1)
+        score = probs[0, 0].item()
+        
+        return score
