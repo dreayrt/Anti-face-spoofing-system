@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import * as faceapi from '@vladmandic/face-api';
-import { registerEmployee, checkLiveness } from '../../services/api';
+import { registerEmployee } from '../../services/api';
 import { evaluateFaceQualityFromCanvas } from '../../utils/faceQuality';
 
 const MODEL_PATH = '/models';
@@ -368,28 +368,6 @@ export default function RegisterEmployee() {
         return;
       }
 
-      // Check Liveness to prevent spoofing during registration
-      try {
-        const livenessRes = await checkLiveness({
-          image,
-          box: faceStatus.box,
-        });
-
-        if (!livenessRes.is_real) {
-          const score = livenessRes.liveness_score;
-          const { brightness, contrast, sharpness } = quality.metrics;
-          setScanError(
-            `[Từ chối mẫu - Điểm an toàn: ${toFixedNumber(score)} < 0.55]\n` +
-            `Lý do: AI phát hiện dấu hiệu nhiễu kỹ thuật số (Compression/Moiré artifacts) đặc trưng của việc phát lại video hoặc màn hình.\n` +
-            `Thông số khung hình lúc quét: Độ sáng=${toFixedNumber(brightness)}, Tương phản=${toFixedNumber(contrast)}, Độ nét=${toFixedNumber(sharpness)}.`
-          );
-          return;
-        }
-      } catch (err) {
-        console.error('Liveness check failed:', err);
-        setScanError('Lỗi kiểm tra liveness từ server. Đảm bảo AI Service đang chạy.');
-        return;
-      }
 
       setCapturedImage(image);
       setSamples((prev) => [
